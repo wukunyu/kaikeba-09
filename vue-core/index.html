@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <script src="compile.js"></script>
+  <script src="kvue.js"></script>
+  <body>
+    <div id="app">
+      <p>{{name}}</p>
+      <p k-text="name"></p>
+      <p>{{age}}</p>
+      <p>
+        {{doubleAge}}
+      </p>
+      <input type="text" k-model="name" />
+      <button @click="changeName" }>呵呵</button>
+      <div k-html="html"></div>
+    </div>
+    <script>
+      const kaikeba = new Kvue({
+        el: "#app",
+        data: {
+          name: "i am test",
+          age: 12,
+          html: "<button>这是一个人按钮</button>",
+          foo: {
+            bar: "bar"
+          }
+        },
+        created() {
+          console.log("开始啦。。。");
+          setTimeout(() => {
+            this.name = "我是测试";
+          }, 2000);
+        },
+        methods: {
+          changeName() {
+            this.name = "哈喽， 开课吧";
+            this.age = 1;
+          }
+        }
+      });
+    </script>
+  </body>
+</html>
+<!-- 
+  1、vue编译过程是怎么样的
+  2、双向绑定的原理
+  思考：
+  3、如何监听数组
+  4、组件的实现
+-->
